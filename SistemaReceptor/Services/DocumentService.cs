@@ -10,7 +10,7 @@ using Shared.Models;
 
 namespace SistemaReceptor.Services
 {
-    public class DocumentService : IMessageReceiver<DocumentRequest>
+    public class DocumentService : IMessageReceiver<string>
     {
         private readonly ILogger _logger;
         private readonly IMessageSender _messageSender;
@@ -21,7 +21,7 @@ namespace SistemaReceptor.Services
             _messageSender = messageSender;
         }
 
-        public async Task ReceiveAsync(DocumentRequest document, CancellationToken cancellationToken)
+        public async Task ReceiveAsync(string document, CancellationToken cancellationToken)
         {
             try
             {
@@ -32,13 +32,13 @@ namespace SistemaReceptor.Services
 
                 if (randomNumber == 1 || randomNumber == 2)
                 {
-                    DocumentInfo documentInfo = new DocumentInfo();
-                    documentInfo.Name = document.Document.FileName;
-                    documentInfo.InsertDate = document.InsertDate;
-                    documentInfo.PrintDate = DateTime.Now;
-                    documentInfo.Status = "Ok";
+                    //DocumentInfo documentInfo = new DocumentInfo();
+                    //documentInfo.Name = document.Document.FileName;
+                    //documentInfo.InsertDate = document.InsertDate;
+                    //documentInfo.PrintDate = DateTime.Now;
+                    //documentInfo.Status = "Ok";
 
-                    await _messageSender.PublishAsync<Respuestas, DocumentInfo>(documentInfo);
+                    await _messageSender.PublishAsync<Respuestas, string>("test");
 
                     _logger.LogInformation($"Document processed.");
                 }

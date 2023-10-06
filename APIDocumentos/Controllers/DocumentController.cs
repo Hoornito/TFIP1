@@ -38,7 +38,9 @@ namespace APIDocumentos.Controllers
                 documentRequest.InsertDate = DateTime.Now;
                 documentRequest.Status = "";
                 
-                await _messageSender.PublishAsync<Documentos, DocumentRequest>(documentRequest, priority);
+                string test = "test";
+
+                await _messageSender.PublishAsync<Documentos, string>(test, priority);
 
                 _logger.LogInformation($"Document sent to print.");
 

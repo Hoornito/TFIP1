@@ -7,7 +7,7 @@ using System.Runtime.InteropServices.ObjectiveC;
 
 namespace APIDocumentos.Services
 {
-    public class AutoService : IMessageReceiver<DocumentInfo>
+    public class AutoService : IMessageReceiver<string>
     {
         private readonly ILogger _logger;
         private readonly IDocumentRepository _documentRepository;
@@ -18,11 +18,11 @@ namespace APIDocumentos.Services
             _documentRepository = documentRepository;
         }
 
-        public async Task ReceiveAsync(DocumentInfo document, CancellationToken cancellationToken)
+        public async Task ReceiveAsync(string document, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Message received to process a document.");
 
-            await _documentRepository.Insert(document);
+            //await _documentRepository.Insert(document);
 
             _logger.LogInformation($"Document processed.");
         }   

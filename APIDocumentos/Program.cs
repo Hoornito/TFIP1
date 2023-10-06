@@ -34,7 +34,7 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
         queues.Add<Documentos>();
         queues.Add<Respuestas>();
     })
-    .AddReceiver<ResponseReceiver<DocumentInfo>, DocumentInfo, AutoService>();
+    .AddReceiver<ResponseReceiver<string>, string, AutoService>();
 
     builder.Services.AddConfig<ConnectionStrings>(builder.Configuration, nameof(ConnectionStrings));
     
