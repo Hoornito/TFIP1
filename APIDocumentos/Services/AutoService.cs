@@ -1,4 +1,6 @@
-﻿using RabbitMqService.Abstractions;
+﻿using Newtonsoft.Json;
+
+using RabbitMqService.Abstractions;
 
 using Shared.Models;
 using Shared.Repositories;
@@ -20,11 +22,19 @@ namespace APIDocumentos.Services
 
         public async Task ReceiveAsync(DocumentInfo document, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Message received to process a document.");
+            try
+            {
+                _logger.LogInformation("Message received to process a document.");
 
-            await _documentRepository.Insert(document);
+                await _documentRepository.Insert(document);
 
-            _logger.LogInformation($"Document processed.");
+                _logger.LogInformation($"Document processed.");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }   
     }
 }

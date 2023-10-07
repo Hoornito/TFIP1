@@ -3,6 +3,8 @@ using RabbitMQ.Client.Events;
 using RabbitMqService.Abstractions;
 using RabbitMqService.Queues;
 using RabbitMqService.RabbitMq;
+
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;

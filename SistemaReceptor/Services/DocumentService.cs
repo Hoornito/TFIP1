@@ -1,16 +1,22 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using RabbitMqService.Abstractions;
 using RabbitMqService.Queues;
 
 using Shared.Models;
 
+using System.Text;
+using System.Text.Json;
+
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace SistemaReceptor.Services
 {
-    public class DocumentService : IMessageReceiver<DocumentRequest>
+    public class DocumentService : IMessageReceiver<object>
     {
         private readonly ILogger _logger;
         private readonly IMessageSender _messageSender;
@@ -21,22 +27,31 @@ namespace SistemaReceptor.Services
             _messageSender = messageSender;
         }
 
-        public async Task ReceiveAsync(DocumentRequest document, CancellationToken cancellationToken)
+        public async Task ReceiveAsync(object document, CancellationToken cancellationToken)
         {
             try
             {
                 _logger.LogInformation("Message received to process a document.");
 
                 Random random = new Random();
-                int randomNumber = random.Next(1, 4);
+                //int randomNumber = random.Next(1, 4);
+                int randomNumber = 4;
 
                 if (randomNumber == 1 || randomNumber == 2)
                 {
-                    DocumentInfo documentInfo = new DocumentInfo();
-                    documentInfo.Name = document.Document.FileName;
-                    documentInfo.InsertDate = document.InsertDate;
-                    documentInfo.PrintDate = DateTime.Now;
-                    documentInfo.Status = "Ok";
+                    DocumentRequest jsonData = JsonConvert.DeserializeObject<DocumentRequest>(document.ToString());
+                    string fileName = jsonData.FileName;
+                    byte[] fileContent = ((JToken)jsonData.DocumentContent).ToObject<byte[]>();
+
+                    IFormFile formFile = new FormFile(new MemoryStream(fileContent), 0, fileContent.Length, "file", fileName);
+
+                    DocumentInfo documentInfo = new DocumentInfo
+                    {
+                        Name = fileName,
+                        InsertDate = jsonData.InsertDate,
+                        PrintDate = DateTime.Now,
+                        Status = "Ok"
+                    };
 
                     await _messageSender.PublishAsync<Respuestas, DocumentInfo>(documentInfo);
 
@@ -44,8 +59,9 @@ namespace SistemaReceptor.Services
                 }
                 else
                 {
-                    // Simula que no responde.
                     _logger.LogInformation("No response for the document.");
+                    throw new Exception("No response for the document.");
+                    // Simula que no responde.
                 }
             }
             catch (Exception)

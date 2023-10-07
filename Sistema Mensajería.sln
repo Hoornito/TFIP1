@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaReceptor", "SistemaReceptor\SistemaReceptor.csproj", "{65278419-061D-4577-9549-3FAF61E58303}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestructure", "Infraestructure\Infraestructure.csproj", "{34DDDEB5-DB21-4C67-9C7A-A607B2946973}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{65278419-061D-4577-9549-3FAF61E58303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65278419-061D-4577-9549-3FAF61E58303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65278419-061D-4577-9549-3FAF61E58303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34DDDEB5-DB21-4C67-9C7A-A607B2946973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34DDDEB5-DB21-4C67-9C7A-A607B2946973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34DDDEB5-DB21-4C67-9C7A-A607B2946973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34DDDEB5-DB21-4C67-9C7A-A607B2946973}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

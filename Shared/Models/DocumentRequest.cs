@@ -10,9 +10,11 @@ namespace Shared.Models
 {
     public class DocumentRequest
     {
-        public IFormFile Document { get; set; }
+        public byte[] DocumentContent { get; set; }
+        public string ContentType { get; set; }
+        public string ContentDisposition { get; set; }
+        public string FileName { get; set; }
         public DateTime InsertDate { get; set; }
-        public DateTime PrintDate { get; set; }
         public string Status { get; set; }
     }
 }

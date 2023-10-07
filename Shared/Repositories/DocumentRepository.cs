@@ -23,15 +23,22 @@ namespace Shared.Repositories
 
         public async Task<int> Insert(DocumentInfo document)
         {
-            
-            using (IDbConnection db = new SqlConnection(_connectionStringsConfig.SqlConnection))
+            try
             {
-                string insertQuery = @"INSERT INTO DocumentTable (Name, InsertDate, PrintDate, Status) VALUES (@Name, @InsertDate, @PrintDate, @Status)";
+                using (IDbConnection db = new SqlConnection(_connectionStringsConfig.SqlConnection))
+                {
+                    string insertQuery = @"INSERT INTO DocumentTable (Name, InsertDate, PrintDate, Status) VALUES (@Name, @InsertDate, @PrintDate, @Status)";
 
-                var result = await db.ExecuteAsync(insertQuery, document);
+                    var result = await db.ExecuteAsync(insertQuery, document, commandType: CommandType.Text);
 
-                //db.Query("INSERT INTO DocumentTable (Name, InsertDate, PrintDate, Status) VALUES (@Name, @InsertDate, @PrintDate, @Status)");
-                return result;
+                    return result;
+                    //db.Query("INSERT INTO DocumentTable (Name, InsertDate, PrintDate, Status) VALUES (@Name, @InsertDate, @PrintDate, @Status)");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 
@@ -43,7 +50,7 @@ namespace Shared.Repositories
 
                 var result = await db.QueryAsync<DocumentInfo>(selectQuery, new { Name = name });
 
-                return result.FirstOrDefault();
+                return result.First();
             }
         }   
     }

@@ -33,16 +33,33 @@ namespace APIDocumentos.Controllers
         {
             try
             {
-                DocumentRequest documentRequest = new DocumentRequest();
-                documentRequest.Document = document;
-                documentRequest.InsertDate = DateTime.Now;
-                documentRequest.Status = "";
-                
-                await _messageSender.PublishAsync<Documentos, DocumentRequest>(documentRequest, priority);
+                if (document == null || document.Length == 0)
+                {
+                    return BadRequest("No file uploaded.");
+                }
+                using (var memoryStream = new MemoryStream())
+                {
+                    await document.CopyToAsync(memoryStream);
+                    var documentContent = memoryStream.ToArray();
 
-                _logger.LogInformation($"Document sent to print.");
+                    // Create a DocumentRequest instance and populate its properties
+                    var documentRequest = new DocumentRequest
+                    {
+                        DocumentContent = documentContent,
+                        ContentType = document.ContentType,
+                        ContentDisposition = document.ContentDisposition,
+                        FileName = document.FileName,
+                        InsertDate = DateTime.Now,
+                        Status = ""
+                    };
 
-                return Ok();
+                    // Now you can serialize and send the DocumentRequest
+                    await _messageSender.PublishAsync<Documentos, DocumentRequest>(documentRequest, priority);
+
+                    _logger.LogInformation($"Document sent to print.");
+
+                    return Ok();
+                }
             }
             catch (Exception ex)
             {
@@ -58,15 +75,19 @@ namespace APIDocumentos.Controllers
             try
             {
                 var result = _documentRepository.GetDocument(name);
-
+                if (result.Result == null)
+                {
+                    _logger.LogInformation($"Document not printed.");
+                    return NotFound("Document not printed.");
+                }
                 _logger.LogInformation($"Document obtained.");
 
-                return Ok(result);
+                return Ok("Document printed correctly.");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Document not found.");
-                return StatusCode(500, "Document not found.");
+                _logger.LogError(ex, "Document not printed.");
+                return StatusCode(500, "Document not printed.");
             }
         }
     }
