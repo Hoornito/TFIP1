@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIReceiver", "SistemaRecep
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{2E4D4903-6E23-4B69-B30B-C0BB11F48A76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{AC458FA9-266E-4F21-9DEA-EA7852DCFE6A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{2E4D4903-6E23-4B69-B30B-C0BB11F48A76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E4D4903-6E23-4B69-B30B-C0BB11F48A76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E4D4903-6E23-4B69-B30B-C0BB11F48A76}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC458FA9-266E-4F21-9DEA-EA7852DCFE6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC458FA9-266E-4F21-9DEA-EA7852DCFE6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC458FA9-266E-4F21-9DEA-EA7852DCFE6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC458FA9-266E-4F21-9DEA-EA7852DCFE6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
