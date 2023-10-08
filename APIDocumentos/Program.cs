@@ -1,13 +1,13 @@
-using APIDocumentos.Helpers;
-using APIDocumentos.Receiver;
-using APIDocumentos.Services;
+using Shared.Helpers;
+using APISender.Receiver;
+using APISender.Services;
 
 using RabbitMqService.Queues;
 using RabbitMqService.RabbitMq;
 
 using Shared.AppSettings;
 using Shared.Models;
-using Shared.Repositories;
+using DAL.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,7 +37,6 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
     .AddReceiver<ResponseReceiver<DocumentInfo>, DocumentInfo, AutoService>();
 
     builder.Services.AddConfig<ConnectionStrings>(builder.Configuration, nameof(ConnectionStrings));
-    
 }
 
 var app = builder.Build();

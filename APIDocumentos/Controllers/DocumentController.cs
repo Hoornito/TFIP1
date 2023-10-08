@@ -6,10 +6,10 @@ using RabbitMqService.RabbitMq;
 
 using System.Diagnostics;
 using System.Reflection.Metadata;
-using Shared.Repositories;
+using DAL.Repositories;
 using RabbitMqService.Abstractions;
 
-namespace APIDocumentos.Controllers
+namespace APISender.Controllers
 {
     [Produces("application/json")]
     [ApiController]
@@ -29,7 +29,7 @@ namespace APIDocumentos.Controllers
 
         [HttpPost]
         [Route("SendDocument")]
-        public async Task<IActionResult> SendDocument(IFormFile document, int priority)
+        public async Task<IActionResult> SendDocument(int priority, IFormFile? document)
         {
             try
             {
@@ -74,15 +74,15 @@ namespace APIDocumentos.Controllers
         {
             try
             {
-                var result = _documentRepository.GetDocument(name);
-                if (result.Result == null)
+                var result = await _documentRepository.GetDocument(name);
+                if (result == null)
                 {
                     _logger.LogInformation($"Document not printed.");
                     return NotFound("Document not printed.");
                 }
                 _logger.LogInformation($"Document obtained.");
 
-                return Ok("Document printed correctly.");
+                return Ok($"Document printed correctly. Document: {result.Name}, Insert Date: {result.InsertDate}, Print Date: {result.PrintDate}.");
             }
             catch (Exception ex)
             {

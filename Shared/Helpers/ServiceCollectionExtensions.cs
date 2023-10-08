@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace APIDocumentos.Helpers
+namespace Shared.Helpers
 {
     public static class ServiceCollectionExtensions
     {

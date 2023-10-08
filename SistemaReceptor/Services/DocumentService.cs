@@ -14,7 +14,7 @@ using System.Text.Json;
 
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace SistemaReceptor.Services
+namespace ApiSender.Services
 {
     public class DocumentService : IMessageReceiver<object>
     {
@@ -34,8 +34,7 @@ namespace SistemaReceptor.Services
                 _logger.LogInformation("Message received to process a document.");
 
                 Random random = new Random();
-                //int randomNumber = random.Next(1, 4);
-                int randomNumber = 4;
+                int randomNumber = random.Next(1, 4);
 
                 if (randomNumber == 1 || randomNumber == 2)
                 {

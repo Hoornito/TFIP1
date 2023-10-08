@@ -94,7 +94,7 @@ namespace RabbitMqService.RabbitMq
 
         public void MarkAsComplete(BasicDeliverEventArgs message) => Channel.BasicAck(message.DeliveryTag, false);
 
-        public void MarkAsRejected(BasicDeliverEventArgs message) => Channel.BasicReject(message.DeliveryTag, false);
+        public void MarkAsRejected(BasicDeliverEventArgs message) => Channel.BasicNack(message.DeliveryTag, false, false);
 
         public void Dispose()
         {

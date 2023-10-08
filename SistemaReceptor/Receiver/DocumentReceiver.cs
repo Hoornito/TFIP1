@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace SistemaReceptor.Receiver
+namespace ApiSender.Receiver
 {
     public class DocumentReceiver<T> : BackgroundService where T : class
     {
@@ -63,6 +63,7 @@ namespace SistemaReceptor.Receiver
 
                     var receiver = scope.ServiceProvider.GetRequiredService<IMessageReceiver<T>>();
                     var response = JsonSerializer.Deserialize<T>(message.Body.Span, messageManagerSettings.JsonSerializerOptions ?? Default);
+
                     await receiver.ReceiveAsync(response, stoppingToken);
 
                     messageManager.MarkAsComplete(message);

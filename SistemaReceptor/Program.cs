@@ -2,12 +2,11 @@ using RabbitMqService.Queues;
 using RabbitMqService.RabbitMq;
 
 using Shared.AppSettings;
+using Shared.Helpers;
 using Shared.Models;
-using Shared.Repositories;
 
-using SistemaReceptor.Helpers;
-using SistemaReceptor.Receiver;
-using SistemaReceptor.Services;
+using ApiSender.Receiver;
+using ApiSender.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +20,6 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
 
-    services.AddScoped<IDocumentRepository, DocumentRepository>();
     services.AddScoped<DocumentService>();
 
     services.AddRabbitMq(settings =>
@@ -35,8 +33,6 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
         queues.Add<Respuestas>();
     })
     .AddReceiver<DocumentReceiver<object>, object, DocumentService>();
-
-    builder.Services.AddConfig<ConnectionStrings>(builder.Configuration, nameof(ConnectionStrings));
 }
 
 var app = builder.Build();

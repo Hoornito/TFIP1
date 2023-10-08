@@ -3,11 +3,11 @@
 using RabbitMqService.Abstractions;
 
 using Shared.Models;
-using Shared.Repositories;
+using DAL.Repositories;
 
 using System.Runtime.InteropServices.ObjectiveC;
 
-namespace APIDocumentos.Services
+namespace APISender.Services
 {
     public class AutoService : IMessageReceiver<DocumentInfo>
     {

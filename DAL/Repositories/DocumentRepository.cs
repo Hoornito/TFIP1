@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Repositories
+namespace DAL.Repositories
 {
     public class DocumentRepository : IDocumentRepository
     {
@@ -48,9 +48,10 @@ namespace Shared.Repositories
             {
                 string selectQuery = @"SELECT * FROM DocumentTable WHERE Name = @Name";
 
-                var result = await db.QueryAsync<DocumentInfo>(selectQuery, new { Name = name });
+                var result = (await db.QueryAsync<DocumentInfo>(selectQuery, new { Name = name })).FirstOrDefault();
 
-                return result.First();
+
+                return result;
             }
         }   
     }
