@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace APISender.Receiver
+namespace APIDocumentos.Receiver
 {
     public class ResponseReceiver<T> : BackgroundService where T : class
     {

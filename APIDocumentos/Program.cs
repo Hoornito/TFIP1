@@ -1,6 +1,6 @@
 using Shared.Helpers;
-using APISender.Receiver;
-using APISender.Services;
+using APIDocumentos.Receiver;
+using APIDocumentos.Services;
 
 using RabbitMqService.Queues;
 using RabbitMqService.RabbitMq;

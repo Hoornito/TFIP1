@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APISender", "APIDocumentos\APISender.csproj", "{C486D429-33D8-4503-BFE3-4254B8A09CB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIDocumentos", "APIDocumentos\APIDocumentos.csproj", "{C486D429-33D8-4503-BFE3-4254B8A09CB3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{3ACD0BA4-2720-43DA-9950-1CD55309D8D9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIReceiver", "SistemaReceptor\APIReceiver.csproj", "{65278419-061D-4577-9549-3FAF61E58303}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIReceptor", "SistemaReceptor\APIReceptor.csproj", "{65278419-061D-4577-9549-3FAF61E58303}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{2E4D4903-6E23-4B69-B30B-C0BB11F48A76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{2E4D4903-6E23-4B69-B30B-C0BB11F48A76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

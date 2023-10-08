@@ -5,8 +5,8 @@ using Shared.AppSettings;
 using Shared.Helpers;
 using Shared.Models;
 
-using ApiSender.Receiver;
-using ApiSender.Services;
+using APIReceptor.Receiver;
+using APIReceptor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

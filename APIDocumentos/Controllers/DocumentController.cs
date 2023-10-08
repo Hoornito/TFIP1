@@ -9,7 +9,7 @@ using System.Reflection.Metadata;
 using DAL.Repositories;
 using RabbitMqService.Abstractions;
 
-namespace APISender.Controllers
+namespace APIDocumentos.Controllers
 {
     [Produces("application/json")]
     [ApiController]

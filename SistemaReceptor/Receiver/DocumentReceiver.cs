@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace ApiSender.Receiver
+namespace APIReceptor.Receiver
 {
     public class DocumentReceiver<T> : BackgroundService where T : class
     {

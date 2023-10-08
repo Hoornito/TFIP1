@@ -7,7 +7,7 @@ using DAL.Repositories;
 
 using System.Runtime.InteropServices.ObjectiveC;
 
-namespace APISender.Services
+namespace APIDocumentos.Services
 {
     public class AutoService : IMessageReceiver<DocumentInfo>
     {

@@ -14,7 +14,7 @@ using System.Text.Json;
 
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace ApiSender.Services
+namespace APIReceptor.Services
 {
     public class DocumentService : IMessageReceiver<object>
     {
